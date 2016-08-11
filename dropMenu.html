@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		ul{
+			width:100px;
+			height:100px;
+			border:1px solid #000;
+			padding-top:20px;
+			background:#FDD7D7;
+			display:none;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" value='按钮' name="">
+	<ul>
+		<li>JS</li>
+		<li>CSS</li>
+		<li>HTML</li>
+		<li>Java</li>
+	</ul>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = document.getElementsByTagName('input')[0];
+			var ul = document.getElementsByTagName('ul')[0];
+
+			var flag = true;
+			btn.onclick = function(){
+				if(flag){
+					ul.style.display = 'block';
+					flag = false;
+				}else{
+					ul.style.display = 'none';
+					flag = true;
+				}
+				
+				/*if(ul.style.display == 'none'){
+					ul.style.display = 'block';
+				}else{
+					ul.style.display = 'none';
+				}*/
+			};
+		};
+	</script>
+</body>
+</html>

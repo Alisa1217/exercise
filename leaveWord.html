@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width:200px;
+			height:200px;
+			border:1px solid #f00;
+			margin-top:10px;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" name="">
+	<input type="button" value="提交" name="">
+	<div id="box"></div>
+	<script type="text/javascript">
+		var inputs = document.getElementsByTagName('input');
+		var box = document.getElementById('box');
+		console.log(inputs);
+		inputs[1].onclick = function(){
+			var val = inputs[0].value;
+			console.log(val);
+			box.innerHTML = '<p>'+ val +'</p>' + box.innerHTML;
+			inputs[0].value = '';
+			inputs[0].focus();
+		};
+	</script>
+</body>
+</html>

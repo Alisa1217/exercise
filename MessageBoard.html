@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box{
+			width:100px;
+			height:100px;
+			border:5px solid #000;
+			margin-top:10px;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" id="btn1" name="" value="按钮1">
+	<input type="button" id="btn2" name="" value="按钮2">
+	<div id="box"></div>
+	<script type="text/javascript">
+		var btn1 = document.getElementById('btn1');
+		var btn2 = document.getElementById("btn2");
+		var box = document.getElementById('box');
+
+		btn1.onclick = function(){
+			css();
+		};
+
+		btn2.onclick = function(){
+			box.style.height = '200px';
+			box.style.background = '#00f';
+		};
+
+		function css(){
+			box.style.width = '200px';
+			box.style.background = '#f00';
+		}
+	</script>
+</body>
+</html>
