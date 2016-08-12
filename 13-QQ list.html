@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+		#box{
+			width:200px;
+			border:1px soild #000;
+		}
+		#box h3{
+			height:30px;
+			line-height:30px;
+			text-align: center;
+			background:  #5a94ef;
+			color:#fff;
+		}
+		#box ul{
+			display: none;
+		}
+		#box ul li{
+			height:30px;
+			line-height: 30px;
+			background:#F5D7DD;
+			border-bottom:1px solid #000;
+		}
+		#box h3.active{
+			background:#C09FE2;
+		}
+		#box ul li.active{
+			background:#38CAD2;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<h3>我的好友</h3>
+		<ul>
+			<li>妮子</li>
+            <li>菁菁</li>
+            <li>轩轩</li>
+            <li>怡馨</li>
+		</ul>
+		<h3>企业好友</h3>
+		<ul>
+			<li>百度</li>
+			<li>网易</li>
+			<li>新浪</li>
+			<li>腾讯</li>
+			<li>阿里</li>
+		</ul>
+		<h3>黑名单</h3>
+		<ul>
+			<li>未知</li>
+			<li>未知</li>
+			<li>未知</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		var h3s = box.getElementsByTagName('h3');
+		var uls = box.getElementsByTagName('ul');
+		var lis = box.getElementsByTagName('li');
+
+		for(var i=0;i<h3s.length;i++){
+			h3s[i].index = i;
+			//点击h3,当前的h3颜色改变，对应的ul显示
+			h3s[i].onclick = function(){
+				//点击标题，清空所有背景
+				for(var i=0;i<lis.length;i++){
+					lis[i].className = '';
+				}
+				//通过class判断是否显示ul
+				if(this.className == ''){
+					//清空其他
+					for(var i=0;i<h3s.length;i++){
+						h3s[i].className = '';
+						uls[i].style.display = 'none';
+					}
+					this.className = "active";
+					uls[this.index].style.display = 'block';
+				}else{
+					this.className = "";
+					uls[this.index].style.display = 'none';
+				}
+			};
+		}
+		//点击li显示背景，再点击隐藏
+		for(var i=0;i<lis.length;i++){
+			lis[i].index = i;
+			//方法1：
+			lis[i].onclick = function(){
+				if(this.className == ''){
+					for(var i=0;i<lis.length;i++){
+						lis[i].className = '';
+					}
+					this.className = 'active';
+				}else{
+					this.className = '';
+				}
+			};
+
+			//方法2：
+			/*lis[i].onOff = true;
+			lis[i].onclick = function(){
+				if(this.onOff){
+					for(var i=0;i<lis.length;i++){
+						lis[i].className = '';
+						lis[i].onOff = true;
+					}
+					this.className = 'active';
+					this.onOff = false;
+				}else{
+					this.className = '';
+					this.onOff = true;
+				}
+			};*/
+		}
+	</script>
+</body>
+</html>
