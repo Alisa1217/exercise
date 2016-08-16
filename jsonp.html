@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<input type="text" name="" id='text'>
+	<ul id='list'>
+		
+	</ul>
+	<script type="text/javascript">
+		/*
+			jsonp
+				跨域的一种手段(方法)
+
+			前端写一个函数，后端传入实参(回调函数)，前端执行
+				jsonp  ajax
+		*/
+		var list=document.getElementById('list');
+		var text=document.getElementById('text');
+		
+		//前端使用、操作数据，定义一个函数去接收
+		function fn3(arr){
+			var html='';
+			for(var i=0;i<arr.s.length;i++){
+				html += '<li>'+ arr.s[i] +'</li>';
+			}
+			//console.log(arr);  //Object {q: "'d", p: false, s: Array[10]}
+			list.innerHTML = html;
+
+			//head.removeChild(s);   删除加在这里便于调试，但是s 的定义要是全局的
+		}
+
+		/*
+			接收数据，从后端拿数据
+				1、创建script标签
+				2、给src设置请求地址
+				3、将script添加到页面中
+
+			onkeyup存在的问题：
+				如果一直按下键盘不抬起，内容只会停留在当前的不会随着改变，需要加一个定时器去触发
+
+			oninput可以一直触发，IE8以下不兼容
+		*/
+		text.onkeyup=function(){
+			var s=document.createElement('script');
+			var head=document.getElementsByTagName('head')[0];
+			s.src='https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+text.value+'&cb=fn3';
+			
+			head.appendChild(s);  //添加标签
+			head.removeChild(s.previousElementSibling);  //删除上一个标签
+
+		};
+		
+	</script>
+</body>
+</html>
