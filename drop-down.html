@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		#box{
+			width:100px;
+			height:100px;
+			background:#f00;
+			position:absolute;
+			left:0;
+			top:0;
+		}
+	</style>	
+	<script>
+	
+		window.onload=function(){
+			var box=document.getElementById('box');
+			
+			//鼠标按下
+			box.onmousedown=function(ev){
+				//鼠标的位置到box的左边和上边的距离
+				var disX=ev.clientX-this.offsetLeft;
+				var disY=ev.clientY-this.offsetTop;
+
+				//鼠标移动
+				document.onmousemove=function(ev){
+					//定义两个变量，存储box移动的左边和上边的位置值
+					var l=ev.clientX-disX;
+					var t=ev.clientY-disY;
+					
+					//限制范围的拖拽
+					if(l<50){  //左右移动
+						l=0;
+					}else if(l>document.documentElement.clientWidth-box.offsetWidth-50){
+						l=document.documentElement.clientWidth-box.offsetWidth;
+					}
+					if(t<50){ //上下移动
+						t=0;
+					}else if(t>document.documentElement.clientHeight-box.offsetHeight-50){
+						t=document.documentElement.clientHeight-box.offsetHeight;
+					}
+					
+					//把正确的位置值赋给box的left和top
+					box.style.left=l+'px';
+					box.style.top=t+'px';
+				};
+
+				//鼠标抬起
+				document.onmouseup=function(){
+					//清除鼠标按下时的事件
+					document.onmousemove=null;
+				};
+				return false;
+			};
+			
+		};
+	</script>
+</head>
+<body>
+	这是一个鼠标拖拽事件
+	<div id="box"></div>
+</body>
+</html>
