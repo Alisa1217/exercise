@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            width: 900px;
+            height: 500px;
+            background: #efefef;
+            padding: 20px 30px 30px 30px;
+        }
+        .head span {
+            font-size: 28px;
+            font-weight: bolder;
+        }
+        #set_btn {
+            width: 128px;
+            height: 52px;
+            background: #f00;
+            color:#fff;
+            font-size: 18px;
+            position:relative;
+            z-index:1000;
+        }
+        #div1 {
+            width: 130px;
+            height: 130px;
+            border: 5px solid #000;
+            float: left;
+            background: #fff;
+        }
+        #shadow{
+            position: absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            width: 960px;
+            height: 550px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+        #box {
+            width: 320px;
+            height: 240px;
+            border: 25px solid #9c949c;
+            font-size: 20px;
+            padding: 20px 40px;
+            margin-top:110px;
+            margin-left:440px;
+            background: #fff;
+            display: block;
+            font-weight: bold;
+        }
+        #box div{
+            margin-bottom:20px;
+        }
+        #box input{
+            width: 48px;
+            height: 40px;
+        }
+        #box input:hover{
+            background: #efbd00;
+            color: #000;
+            border: 1px solid #000;
+        }
+        #red_btn{
+            background:#f00;
+            color:#fff;
+        }
+        #red_btn:hover,#yellow_btn:hover,#blue_btn:hover{
+            border:1px solid #000;
+            background: pink;
+        }
+        #yellow_btn{
+            background:yellow;
+            color:#fff;
+        }
+        #blue_btn{
+            background:#00f;
+            color:#fff;
+        }
+        #button{
+            text-align: center;
+        }
+        #button input{
+            width:70px;
+            height:40px;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="head">
+            <span>请为下面的DIV设置样式：</span>
+            <input id="set_btn" type="button" value="点击设置">
+        </div>
+        <div id="div1"></div>
+        <div id="shadow" class="shadow">
+            <div id="box">
+                <div id="background">
+                    <span>请选择背景色：</span>
+                    <input id="red_btn" type="button" value="红">
+                    <input id="yellow_btn" type="button" value="黄">
+                    <input id="blue_btn" type="button" value="蓝">
+                </div>
+                <div id="width">
+                    <span>请选择宽(px)：</span>
+                    <input id="width_btn1" type="button" value="200">
+                    <input id="width_btn2" type="button" value="300">
+                    <input id="width_btn3" type="button" value="400">
+                </div>
+                <div id="height">
+                    <span>请选择高(px)：</span>
+                    <input id="height_btn1" type="button" value="200">
+                    <input id="height_btn2" type="button" value="300">
+                    <input id="height_btn3" type="button" value="400">
+                </div>
+                <div id="button">
+                    <input id="reset_btn" type="reset" value="恢复">
+                    <input id="ok_btn" type="button" value="确定">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var setBtn = document.getElementById('set_btn');
+        var div = document.getElementById("div1");
+        var shadow = document.getElementById('shadow');
+        //设置显示样式
+        setBtn.onclick = function(){
+            shadow.style.display = 'block';
+        };
+        //设置隐藏样式
+        setBtn.onmouseover = function(){
+            shadow.style.display = 'none';
+        };
+        /*
+            需求：设置div1的背景颜色
+            1.定义三个背景变量
+            2.分别获取背景元素id
+        */
+        var redBtn = document.getElementById('red_btn');
+        var yellowBtn = document.getElementById('yellow_btn');
+        var blueBtn = document.getElementById('blue_btn');
+        redBtn.onclick = function(){
+            div.style.background = 'red';
+        };
+        yellowBtn.onclick = function(){
+            div.style.background = 'yellow';
+        };
+        blueBtn.onclick = function(){
+            div.style.background = 'blue';
+        };
+        /*
+        * 需求：设置div1的宽度
+        * 1.定义三个宽度变量
+        * 2.分别获取宽度id
+        * */
+        var widthBtn1 = document.getElementById('width_btn1');
+        var widthBtn2 = document.getElementById('width_btn2');
+        var widthBtn3 = document.getElementById('width_btn3');
+        widthBtn1.onclick = function(){
+            div.style.width = '200px';
+        };
+        widthBtn2.onclick = function(){
+            div.style.width = '300px';
+        };
+        widthBtn3.onclick = function(){
+            div.style.width = '400px';
+        };
+        /*
+         * 需求：设置div1的高度
+         * 1.定义三个高度变量
+         * 2.分别获取高度id
+         * */
+        var heightBtn1 = document.getElementById('height_btn1');
+        var heightBtn2 = document.getElementById('height_btn2');
+        var heightBtn3 = document.getElementById('height_btn3');
+        heightBtn1.onclick = function(){
+            div.style.height = '200px';
+        };
+        heightBtn2.onclick = function(){
+            div.style.height = '300px';
+        };
+        heightBtn3.onclick = function(){
+            div.style.height = '400px';
+        };
+        /*
+        * 需求：设置div1重置后的宽，高，背景
+        * 1.定义变量
+        * 2.获取重置按钮元素id
+        * 3.为重置按钮添加点击事件
+        * 4.设置div1的样式
+        * */
+        var resetBtn = document.getElementById('reset_btn');
+        resetBtn.onclick = function(){
+            div.style.width = "130px";
+            div.style.height = "130px";
+            div.style.background = "#fff";
+            shadow.style.display = 'none';
+        };
+        /*
+        * 需求：点击确定按钮，shadow隐藏
+        * 1.定义变量
+        * 2.获取确定按钮的id
+        * 3.添加点击事件
+        * 4.将shadow设置隐藏
+        * */
+        var okBtn = document.getElementById('ok_btn');
+        okBtn.onclick = function(){
+            shadow.style.display = 'none';
+        };
+    </script>
+</body>
+</html>
