@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			padding:0;
+			margin:0;
+		}
+		#box{
+			width:400px;
+			height:30px;
+			border:1px solid #000;
+			padding:10px;
+			line-height: 30px;
+		}
+		#box dt{
+			float:left;
+			font-size:20px;
+			font-weight: bold;
+		}
+		#box dt span{
+			color:#f00;
+		}
+		#box dd{
+			float:left;
+			width:20px;
+			height:20px;
+			background: url('img/xing.png');
+			cursor: pointer;
+		}
+		#box span{
+			float:left;
+			margin-left:20px;
+			display: block;
+		}
+		#box dd.pic1{
+			background: url('img/xing1.png');
+		}
+		#box dd.pic2{
+			background: url('img/xing2.png');
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<dl>
+			<dt><span>*</span>总体评分：</dt>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+			<dd></dd>
+		</dl>
+		<span id="lever">
+			<!-- <img src="img/tip.png"/> -->
+			还没评分呢！！！
+		</span>
+	</div>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		var dds = box.getElementsByTagName('dd');
+		var lever = document.getElementById('lever');
+		var textArr = ['很差','较差','还行','推荐','力荐'];
+		var num = -1;
+
+		for(var i=0;i<dds.length;i++){
+			dds[i].index = i;
+			//鼠标移入效果
+			dds[i].onmouseover = function(){
+				for(var i=0;i<dds.length;i++){
+					dds[i].className = '';
+				}
+				for(var i=0;i<=this.index;i++){
+					//判断i<2，显示暗色
+					if(i<2){
+						dds[i].className = 'pic1';
+					}else{
+						//从第三个开始显示黄色星星
+						for(var j=0;j<=this.index;j++){
+							dds[j].className = 'pic2';
+						}
+					}
+				}
+				lever.innerHTML = textArr[this.index];
+			};
+			//鼠标移出，清空所有样式
+			dds[i].onmouseout = function(){
+				//没有点击的时候，清空
+				for(var i=0;i<dds.length;i++){
+					dds[i].className = '';
+				}
+				//点击之后，显示点击索引及之前的星星
+				for(var i=0;i<=num;i++){
+					if(i<2){
+						dds[i].className = 'pic1';
+					}else{
+						for(var j=0;j<=num;j++){
+							dds[j].className = 'pic2';
+						}
+					}
+				}
+				if(num >= 0){
+					lever.innerHTML = textArr[num];
+				}else{
+					lever.innerHTML = '还没评分呢！！！';
+				}
+			};
+			//点击设置样式
+			dds[i].onclick = function(){
+				num = this.index;
+			};
+		}
+	</script>
+</body>
+</html>
